@@ -35,6 +35,7 @@ import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2.FilteredCollection;
 import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.primitives.Ints;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
@@ -1325,7 +1326,8 @@ public final class Maps {
   @CanIgnoreReturnValue
   public static <K, V> ImmutableMap<K, V> uniqueIndex(
       Iterable<V> values, Function<? super V, K> keyFunction) {
-    if (values instanceof Collection) {
+    if (values instanceof Collection
+        && !(values instanceof FilteredCollection || values instanceof FilteredMultimapValues)) {
       return uniqueIndex(
           values.iterator(),
           keyFunction,
