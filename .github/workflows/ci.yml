@@ -33,7 +33,7 @@ jobs:
       ROOT_POM: ${{ matrix.root-pom }}
     steps:
       - name: 'Check out repository'
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       # When we specify multiple JDKs, the final one becomes the default, which is used to execute Maven itself.
@@ -41,7 +41,7 @@ jobs:
       # - 11 (sometimes) to *download* to support anyone who runs JDiff or our Gradle integration tests (including our doc snapshots and our Java 11 CI test run) but not to use directly
       # - 26 for running Javadoc and javac (to help people who build Guava locally and might not use a recent JDK to run Maven)
       - name: 'Set up JDKs'
-        uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
         with:
           java-version: |
             ${{ matrix.java }}
@@ -65,11 +65,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check out repository'
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: 'Set up JDKs'
-        uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
         # For the usage of the JDK 11+17, see util/gradle_integration_tests.sh
         # And 26 is for running javac (as configured in the Maven build), as usual.
         with:
@@ -80,7 +80,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: 'Set up Gradle'
-        uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
       - name: 'Integration Test'
         shell: bash
         run: util/gradle_integration_tests.sh
@@ -92,11 +92,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check out repository'
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: 'Set up JDKs'
-        uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
         with:
           # For discussion, see the first setup-java block.
           # The publish-snapshot workflow doesn't run tests, so we don't have to care which version Maven would select for that step.
@@ -121,11 +121,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check out repository'
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: 'Set up JDKs'
-        uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
         with:
           # For discussion, see the first setup-java block.
           # The generate-docs workflow doesn't run tests, so we don't have to care which version Maven would select for that step.
